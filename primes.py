@@ -51,7 +51,7 @@ for i in range(1, n):
         # if the current prime is equal to a smaller than the root of n, then
         # we can expand the number of primes we multiply.  If it's bigger than
         # the root, then all future products will be too big for the array
-        if primes[-1] <= int((n * 2 + 1) ** .5):
+        if primes[-1] <= int((n * 2 + 2) ** .5):
             limit += 1;
         # p represents the index of the prime numbers, starting at 3 (index 1)
         # the limit is there so we don't bother checking multiples when we
@@ -62,7 +62,7 @@ for i in range(1, n):
             # if currentNum * x is too big, then all future numbers * x will
             # also be too big.
             if index >= n:
-                limit = p - 1
+                limit = p
                 break
             # otherwise, we "cross off" the number by marking it with the index
             # of it's largest prime factor.
@@ -74,7 +74,7 @@ for i in range(1, n):
         for p in range(array[i], limit):
             index = int(((currentNum * primes[p]) - 1) / 2)
             if index >= n:
-                limit = p - 1
+                limit = p
                 break
             array[index] = p
 print(primes)
