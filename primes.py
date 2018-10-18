@@ -16,13 +16,12 @@ size = int(input("What is the range you would like to search? "))
 # divide array in half, each element represents an odd number.
 array = [-1] * int((size + 1) / 2)
 
-array[1] = 1;
 n = len(array)
-primes = [2, 3]
+primes = [2]
 # the limit is the index of the largest prime factor for future consideration
 # this is because you will no longer cross off multiples if the product exceeds
 # the size of the array
-limit = 1
+limit = 0
 # the limit should continue to grow until we reach the root of n
 root = int((n * 2 + 2) ** .5)
 
@@ -33,10 +32,10 @@ for i in range(1, n):
         primes.append(currentNum)
         # once we pass the 1/3 mark, it will be impossible to cross off any new
         # numbers, because new numbers will be too big for the array
-        if limit == 0:
-            continue
         if primes[-1] <= root:
             limit += 1;
+        if limit == 0:
+            continue
         # p represents the index of the prime numbers, starting at 3 (index 1)
         # the limit is there so we don't bother with products that we already
         # know will be too big
@@ -59,4 +58,6 @@ for i in range(1, n):
                 limit = p
                 break
             array[index] = p
+
+print("There are", len(primes), "prime numbers")
 print(primes)
